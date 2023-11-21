@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WorkList</title>
+
+   
+    
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <section class="main">
+      <div class="heading container wrap ">
+        <%if(personal){%>
+          <h1>To Do List</h1>
+        <%}else{%>
+          <h1>WorkList</h1>
+        <%}%>
+      </div>
+
+       <div class="container">
+        <div class="list-group">
+        <%if(locals.text){%>
+        <% for(var i=0;i<text.length;i++){ %>
+        
+          <form action="/changedcheck" method="POST">
+          <label class="list-group-item" id="lab">
+            &nbsp;&nbsp;
+            <input class="form-check-input me-1 checkbox" id="<%i%>"type="checkbox" name="Listname" onChange="this.form.submit()" value="">
+            &nbsp;&nbsp;&nbsp;
+            <input type="hidden" name="para" value="<%-i%>">        
+        <p>
+            <%-text[i];%>
+          </p>
+          
+          </label>
+        </form>
+        <%}%>
+        <%}%>
+          
+        
+         
+        </div>
+        </div>
+    <div class="container">
+      <form action="/submit" method="POST">
+        <input type="text" name="mytext" class="form-control mytext" id="input"  placeholder="Enter Your Tasks" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <button type="btn btn-primary button" type="submit"id="butt" ><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+      </svg></button></div>
+    </form>
+  </div>
+  <div class="container">
+    <form action="/worklist" method="POST">
+    <button type="submit" method="post" class="btn btn-primary" id="WorkButton"><%=bname%></button>
+  </form>
+  </div>
+     
+     <div class="container footer"><p>Made with ❤️ by Sahil</p></div>
+</body>
+</html>
